@@ -31,7 +31,7 @@
 
         <div class="gh-wrapper">
             <section class="gh-section">
-                <h2 class="gh-section-title">More issues</h2>
+                <h2 class="gh-section-title">Weitere Drops</h2>
 
                 <div class="gh-feed">
                     {{^is "paged"}}
@@ -46,10 +46,10 @@
                 </div>
 
                 {{#match posts.length "=" 1}}
-                    Additional issues will be published soon.
+                    Weitere Drops droppen bald.
                 {{/match}}
 
-                <button class="gh-loadmore gh-btn">Load more issues</button>
+                <button class="gh-loadmore gh-btn">Mehr Posts laden</button>
             </section>
 
             <aside class="gh-sidebar">
@@ -81,12 +81,12 @@
                                             {{> icons/email}}
                                             deine@email.de
                                         </div>
-                                        <div class="gh-subscribe-input-btn">Subscribe</div>
+                                        <div class="gh-subscribe-input-btn">Subscriben</div>
                                     </a>
                                 {{else}}
                                     {{#if @setting.paid_members_enabled}}
-                                        <p class="gh-signup-description">Upgrade to a paid account to get full access.</p>
-                                        <a class="gh-signup-btn gh-btn gh-primary-btn" href="#/portal/account/plans" data-portal="account/plans">Upgrade now</a>
+                                        <p class="gh-signup-description">Upgrade auf Premium und sichere dir vollen Zugang.</p>
+                                        <a class="gh-signup-btn gh-btn gh-primary-btn" href="#/portal/account/plans" data-portal="account/plans">Jetzt upgraden</a>
                                     {{/if}}
                                 {{/if}}
                             </div>
@@ -127,11 +127,11 @@
 
                 {{#if @site.recommendations_enabled}}
                     <section class="gh-section">
-                        <h3 class="gh-section-title">Recommendations</h3>
+                        <h3 class="gh-section-title">Empfehlungen</h3>
 
                         <div class="gh-recommendations">
                             {{recommendations}}
-                            <button data-portal="recommendations">See all {{> "icons/arrow-right"}}</button>
+                            <button data-portal="recommendations">Alle ansehen {{> "icons/arrow-right"}}</button>
                         </div>
                     </section>
                 {{/if}}
