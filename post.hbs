@@ -1,65 +1,74 @@
 {{!< default}}
 
 {{#post}}
+  {{#match @custom.default_post_layout "with-regular-image"}}
+    {{> post-hero
+      type="regular-image"
+      media_class="max-w-content"
+    }}
+  {{/match}}
+  {{#match @custom.default_post_layout "with-wide-image"}}
+    {{> post-hero
+      type="wide-image"
+      media_class="max-w-wide"
+    }}
+  {{/match}}
+  {{#match @custom.default_post_layout "with-fullwidth-image"}}
+    {{> post-hero
+      type="fullwidth-image"
+      wrapper_class="flex-col-reverse pb-4"
+      content_class="relative z-10 md:pt-8 pb-6 border-b border-brd-soft md:-mt-18 md:bg-bgr md:before:absolute md:before:w-[calc(100%_+_5rem)] md:before:h-full md:before:-left-10 md:before:top-0 md:before:bg-bgr md:before:-z-1"
+      media_class="max-w-site"
+      image_sizes="(max-width: 1023px) 90vw, 1200px"
+    }}
+  {{/match}}
+  {{#match @custom.default_post_layout "with-no-image"}}
+    {{> post-hero
+      type="no-image"
+      media_class="hidden"
+    }}
+  {{/match}}
+  {{#match @custom.default_post_layout "with-sidebar"}}
+    <section class="lg:px-6 lg:[&_section]:px-0! lg:[&_[data-post-info]]:px-0! lg:[&_article]:[--gap:0]!" style="--container-content: 760px;" data-post-with-sidebar>
+      <div class="max-w-site mx-auto flex flex-col gap-6 lg:flex-row">
+        <div class="flex-2">
+          {{> post-hero
+            type="with-sidebar"
+          }}
 
-<main id="gh-main" class="gh-main">
-    <article class="gh-article {{post_class}}">
-
-        <header class="gh-article-header gh-canvas">
-            <span class="gh-article-meta">
-                Von {{authors}}
-                {{#if primary_tag}}
-                    in
-                    <a class="gh-article-tag" href="{{primary_tag.url}}">{{primary_tag.name}}</a>
-                {{/if}}
-                —
-                <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>
-            </span>
-
-            <h1 class="gh-article-title">{{title}}</h1>
-
-            {{#if custom_excerpt}}
-                <p class="gh-article-excerpt">{{custom_excerpt}}</p>
-            {{/if}}
-
-            {{> "feature-image"}}
-        </header>
-
-        <div class="gh-content gh-canvas">
+          <article class="ghost-content prose prose-lg prose-theme"{{#unless access}} data-preview{{/unless}}>
             {{content}}
+          </article>
+
+          {{> author-box}}
+
+          {{> post-tags}}
+
+          {{> comments
+            wrapper_class="mb-0!"
+          }}
         </div>
+        
+        {{> post-sidebar}}
+      </div>
+    </section>
+  {{/match}}
 
-        {{#if comments}}
-            <div class="gh-comments gh-canvas">
-                {{comments}}
-            </div>
-        {{/if}}
-
-        <footer class="gh-article-footer gh-canvas{{#if @site.comments_enabled}}{{#unless @member}} no-border{{/unless}}{{#unless access}} no-border{{/unless}}{{/if}}">
-            <nav class="gh-navigation">
-                <div class="gh-navigation-previous">
-                    {{#prev_post}}
-                        <a class="gh-navigation-link" href="{{url}}">
-                            <span class="gh-navigation-label">{{> icons/arrow-left}} Vorheriger Artikel</span>
-                            <h4 class="gh-navigation-title">{{title}}</h4>
-                        </a>
-                    {{/prev_post}}
-                </div>
-
-                <div class="gh-navigation-middle"></div>
-
-                <div class="gh-navigation-next">
-                    {{#next_post}}
-                        <a class="gh-navigation-link" href="{{url}}">
-                            <span class="gh-navigation-label">Nächster Artikel {{> icons/arrow-right}}</span>
-                            <h4 class="gh-navigation-title">{{title}}</h4>
-                        </a>
-                    {{/next_post}}
-                </div>
-            </nav>
-        </footer>
-
+  {{#match @custom.default_post_layout "!=" "with-sidebar"}}
+    <article class="ghost-content prose prose-lg prose-theme"{{#unless access}} data-preview{{/unless}}>
+      {{content}}
     </article>
-</main>
 
+    {{> author-box}}
+
+    {{> post-tags}}
+
+    {{> comments}}
+  {{/match}}
+
+  {{> related-tag}}
+
+  {{> related-author}}
+
+  {{> sections/sponsored}}
 {{/post}}

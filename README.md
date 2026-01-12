@@ -1,38 +1,66 @@
-# Journal
+# Gazet - Ghost theme
 
-A minimal, typography-heavy newsletter theme for [Ghost](https://github.com/TryGhost/Ghost).
 
-**Demo: https://journal.ghost.io**
+## Requirements
 
-# Instructions
+Ghost `5.118.0` or higher
 
-1. [Download this theme](https://github.com/TryGhost/Journal/archive/main.zip)
-2. Log into Ghost, and go to the `Design` settings area to upload the zip file
 
-# Development
+## Config
 
-Edition styles are compiled using Gulp/PostCSS to polyfill future CSS spec. You'll need [Node](https://nodejs.org/), [Yarn](https://yarnpkg.com/) and [Gulp](https://gulpjs.com) installed globally. After that, from the theme's root directory:
+The package.json file contains the basic configurations:
+- `posts_per_page` - for setting the number of posts per page
+- responsive image sizes
+- custom theme settings
 
-```bash
-# Install
-yarn
+The custom settings are available in the Ghost Admin under **Settings > Design**
 
-# Run build & watch for changes
-yarn dev
-```
 
-Now you can edit `/assets/css/` files, which will be compiled to `/assets/built/` automatically.
+## Install
 
-The `zip` Gulp task packages the theme files into `dist/journal.zip`, which you can then upload to your site.
+To install the theme do the following:
+1. Upload the theme zip file in your Ghost Admin.
+- check out the [official guide](https://ghost.org/help/installing-a-theme/) for more details.
 
-```bash
-yarn zip
-```
+2. Upload the `routes.yaml` file.
+- Go to **Settings > Labs > Routes**
 
-# Contribution
+3. Adjust the Custom Settings
+- Custom settings are split into 3 categories: Site-wide, Homepage and Post
+- Go to **Setting > Design > Site-wide/Homepage/Post**
 
-This repo is synced automatically with [TryGhost/Themes](https://github.com/TryGhost/Themes) monorepo. If you're looking to contribute or raise an issue, head over to the main repository [TryGhost/Themes](https://github.com/TryGhost/Themes) where our official themes are developed.
+For more details check out the [official theme documentation](https://brightthemes.com/docs/gazet/).
 
-# Copyright & License
 
-Copyright (c) 2013-2025 Ghost Foundation - Released under the [MIT license](LICENSE).
+## Development
+
+The theme is built with [TailwindCSS](https://tailwindcss.com/) and [Alpine.js](https://alpinejs.dev/).
+The development environment is based on [Vite](https://vitejs.dev/), the tasks can ran with npm scripts.
+
+1. `npm run dev` (`vite build --watch & vite`)
+The dev script will start the development process, watching for changes and building.
+The `vite.config.js` file contains the main configuration for Vite.
+
+2. `npm run build` (`vite build`)
+The build script will start the build process.
+
+3. `npm run test` (`gscan . --verbose`)
+The test will test the theme using [gscan](https://gscan.ghost.org/) the official Ghost test tool.
+
+4. `npm run zip`
+The zip script will create a zip file in the `dist` directory.
+
+
+## Demo
+
+[https://gazet.brightthemes.com/](https://gazet.brightthemes.com/)
+
+
+## Documentation
+
+[https://brightthemes.com/docs/gazet](https://brightthemes.com/docs/gazet/)
+
+
+## Help
+
+[https://brightthemes.com/contact/](https://brightthemes.com/contact/)
